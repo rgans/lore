@@ -1,0 +1,21 @@
+extends navigation
+
+block head
+
+block content
+    form(method='POST' name='frm-save' action='/owner/institution/wizard')
+        label(for='name') Name: 
+        input(type='text' name='name' id='name' value=name)
+
+        a(href='#' class='new-campus') Add campus
+        ul(class='campus-list')
+            li
+                label(for='campus') Campus:
+                input(type='text' name='campus[0][name]' id='campus[0][name]' value=campus ? campus[0].name : null)
+                a(href='#' class='new-building') Add building
+                ul(class='building-list')
+                    li
+                        label(for='building') Building: 
+                        input(type='text' name='building[0][name]' id='building[0][name]' value=building ? building[0].name : null)
+
+        input(type='submit' name='btn-save' value='Salvar')

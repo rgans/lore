@@ -1,0 +1,17 @@
+html { height: 100%; }
+body { height: 100%; margin: 0; padding: 0; }
+
+#header { height: 48px; background-color: #2E3A5D; }
+#navigation { width: 70%; float: left; background-color: gray }
+#user-info { float: right; margin: 0 10px; }
+#user-info a { }
+#user-info img { width: 50px; height: 50px; margin-right: 10px; float: left; }
+
+ul.row { }
+ul.row li { height: 30px; line-height: 30px; margin:0 10px; display: inline-block; }
+
+#content { clear: both; width: 100%; height: 100%; background-color: #F0F0F0; }
+#wrapper { clear: both; width: 80%; height: 100%; }
+#nav-options { width: 200px; height: 100%; float: left; background-color: #F0F0F0; }
+#nav-content { width: 800px; height: 100%; }
+#footer { width: 100%; height: 100px; background-color: darkcyan; }

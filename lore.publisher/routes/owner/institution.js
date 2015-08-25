@@ -21,16 +21,17 @@ validator(
         res.render(c.path.views.owner.institution_wizard, { fault: req.form.getErrors() });
     } else {
         institutionService.post(req.body, function(r){
+            console.log(r);
             if(r.fault) {
-                res.render(c.path.views.owner.institution_wizard, { fault: r.fault });
+                res.render(c.path.views.owner.institution_wizard, r);
             } else {
-                res.redirect('/owner/institution/' + r.result._id + '/building/wizard');
+                res.redirect('/owner/institution/' + r.result._id + '/wizard');
             }
         });
     }
 });
 
-router.get('/:id/building/wizard', function(req, res, next) {
+router.get('/:id/wizard', function(req, res, next) {
     
     var id = req.params.id;
     institutionService.getById(id, function(r){

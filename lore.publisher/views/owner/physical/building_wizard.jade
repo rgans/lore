@@ -3,9 +3,9 @@ extends navigation
 block head
 
 block content
-    form(method='POST' name='frm-save' action='/owner/institution/wizard')
+    form(method='POST' name='frm-save' action='/owner/institution/#{result._id}/wizard')
         label(for='name') Name: 
-        input(type='text' name='name' id='name' value=name)
+        input(type='text' name='name' id='name' value=result.name)
 
         a(href='#' class='new-campus') Add campus
         ul(class='campus-list')

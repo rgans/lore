@@ -7,7 +7,7 @@ block head
 block content
     form(method='POST' name='frm-save' action='/owner/institution/wizard')
         input(type='text' name='name' id='name' value=name placeholder='Nome da instituição')
-        if(fault && fault.name)
-            label(class='frm-error') #{fault.name[0]}
+        if(fault)
+            label(class='frm-error') #{fault}
 
         input(type='submit' name='btn-save' value='Salvar')

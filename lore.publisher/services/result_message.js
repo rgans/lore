@@ -6,11 +6,10 @@
 
 
 module.exports = function(err, res, body){
-    var r = {
-        result: JSON.parse(body)
-    };
+    var r = {};
 
     if(err) r.fault = { faultCode: 0, faultMessage: err, localizedMessages: [{'pt-BR':'sdasdasda'}] };
+    else r.result = JSON.parse(body);
 
-    return r;
+    return JSON.parse(body);
 };

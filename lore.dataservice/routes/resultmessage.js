@@ -10,7 +10,7 @@ module.exports = function(res, err){
         result: res
     };
 
-    if(err) r.fault = { faultCode: 0, faultMessage: err, localizedMessages: [{'pt-BR':'sdasdasda'}] };
+    if(err) r.fault = { faultCode: 0, faultMessage: 'ERRRRRRO', localizedMessages: {'pt-BR':'sdasdasda'} };
 
     return r;
 };

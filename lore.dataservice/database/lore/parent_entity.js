@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var validator = require('mongoose-validators');
 var schema = mongoose.Schema;
 
-var addressSchema = new schema({
+var parentSchema = new schema({
     location: {type: String, required: true},
     district: {type: String, required: true},
     province: {type: String, required: true},
@@ -11,8 +11,8 @@ var addressSchema = new schema({
     postcode: {type: String, minlength: 8, maxlength: 8}
 });
 
-var entity = { collection_name: 'address' };
+var entity = { collection_name: 'parent' };
 
-entity.model = mongoose.model(entity.collection_name, addressSchema);
+entity.model = mongoose.model(entity.collection_name, parentSchema);
 
 module.exports = entity;

@@ -7,4 +7,8 @@ var contactSchema = new schema({
     value: {type: String, required: true}
 });
 
-module.exports = mongoose.model('contact', contactSchema);
+var entity = { collection_name: 'contact' };
+
+entity.model = mongoose.model(entity.collection_name, contactSchema);
+
+module.exports = entity;

@@ -1,23 +1,14 @@
 var mongoose = require('mongoose');
 var validator = require('mongoose-validators');
 var schema = mongoose.Schema;
-var addressSchema = require('./address_entity');
-var contactSchema = require('./contact_entity');
-
-var buildingSchema = new schema({
-    name: {type: String, required: true},
-    address: {type: mongoose.Schema.ObjectId, ref: 'address'},
-    contact: [contactSchema]
-});
-
-var campusSchema = new schema({
-    name: {type: String, required: true},
-    building: [buildingSchema]
-});
+var campusSchema = require('./campus_entity');
 
 var institutionSchema = new schema({
     name: {type: String, required: true},
-    campus: [campusSchema]
-});
+    //campus: [campusSchema]
+    campus: [{type: mongoose.Schema.Types.ObjectId, ref: campusSchema.modelName}]
+}
+//, { collection: 'institution' }
+);
 
 module.exports = mongoose.model('institution', institutionSchema);

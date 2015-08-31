@@ -14,6 +14,8 @@
     "morgan": "*",
     "serve-favicon": "*",
     "express-form": "*",
-    "request": "*"
+    "request": "*",
+    "connect-mongo": "*",
+    "express-session": "*"
   }
 }

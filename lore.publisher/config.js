@@ -1,43 +1,29 @@
 var path = require('path');
 
-var config = {
-    
-    repository: {
+var config = {};
+
+config.services = {
+    params: { 
+        host:'http://localhost:3000', 
+        authtoken:'algum', 
+        namespaces:[{ namespace: 'br-com-lore-services-dataaccess', accessPoints: ['http://localhost:3000'] }]
+    }
+};
+
+config.services.dataaccess = {
+    namespace: 'br-com-lore-services-dataaccess',
+    authenticate: '/security/authenticate',
+    institution: '/institution',
+    user: '/user'
+};
+
+config.repository = {
         communication: {
             options: { replset: { socketOptions: { connectTimeoutMS : 50 }}},
             address: 'localhost',
             name: 'lalubema-services-communication',
             cnnString: 'mongodb://localhost/lalubema-services-communication'
         }
-    },
-    
-    path: {
-        service: {
-            institution: path.join(__dirname, 'services/institution_service')
-        },
-        
-        entity: {
-            communication: {
-                notification: path.join(__dirname, 'database/communication/notification_entity')
-            }
-        },
-        
-        routes: {
-            account: path.join(__dirname, 'routes/institution'),
-            owner: {
-                institution: '/owner/institution',
-                building_add: function(id) { '/owner/institution/' + id + 'building/wizard' }
-            }
-        },
-        
-        views: {
-            owner: {
-                institution_wizard: path.join(__dirname, 'views/owner/physical/institution_wizard'),
-                building_wizard: path.join(__dirname, 'views/owner/physical/building_wizard')
-            },
-        }
-    }
-    
-};
+    };
 
 module.exports = config;

@@ -1,42 +1,80 @@
-var c = require('../../config');
-var institutionService = require(c.path.service.institution);
 var express = require('express');
-var validator = require('express-form').configure({ autoTrim: true });
-var field = validator.field;
 var router = express.Router();
+var InstitutionService = require_r('/services/institutionservice');
 
-/* GET home page. */
-router.get('/wizard', function(req, res, next) {
-    res.render(c.path.views.owner.institution_wizard);
-});
+var service = new InstitutionService();
 
-router.post('/wizard', 
-validator(
-    field('name', 'Nome da instituicao').required('O campo %s e obrigatorio').isAlpha('Nome invalido')
-)
-,function (req, res, next) {
+var get_wizard = function(req, res, next) {
+    res.render('owner/institution/institution_wizard');
+};
 
-    if(!req.form.isValid) {
-        console.log(req.form.getErrors());
-        res.render(c.path.views.owner.institution_wizard, { fault: req.form.getErrors() });
-    } else {
-        institutionService.post(req.body, function(r){
-            console.log(r);
-            if(r.fault) {
-                res.render(c.path.views.owner.institution_wizard, r);
-            } else {
-                res.redirect('/owner/institution/' + r.result._id + '/wizard');
-            }
-        });
-    }
-});
-
-router.get('/:id/wizard', function(req, res, next) {
+var post_wizard = function(req, res, next) {
     
-    var id = req.params.id;
-    institutionService.getById(id, function(r){
-        res.render(c.path.views.owner.building_wizard, r);
+    var model = { name: req.body.name };
+
+    
+
+    res.render('owner/institution/institution_wizard');
+};
+
+var get_id_wizard = function(req, res, next) {
+
+    var model = {};
+
+    service.findById(req.params.id, 
+    function(result){
+        //Erros on data validation
+        if(result.fault) {
+            model.fault = result.fault;
+            //res.render('owner/physical/building_wizard', model);
+        }
+        //Sucess on the request
+        else {
+            model = result.data ? result.data : null;
+            //res.render('owner/physical/building_wizard', model);
+        }
+        res.json(result);
+    }, 
+    //Not expected erros
+    function(error){
+        model.error = 'Ocorreu um erro inesperado';
+        //res.render('owner/physical/building_wizard', model);
+        res.json(error);
     });
-});
+};
+
+var post_id_wizard = function(req, res, next) {
+    
+    var model = {
+        name: req.body.name,
+        campus: [req.body.campus]
+    };
+
+    service.save(req.params.id, model, 
+    function(result){
+        //Erros on data validation
+        if(result.fault) {
+            model.fault = result.fault;
+            //res.render('owner/institution/building_wizard');
+        }
+        //Sucess on the request
+        else {
+            model = result.data ? result.data : null;
+            //res.render('owner/institution/building_wizard');
+        }
+        res.json(result);
+    }, 
+    //Not expected erros
+    function(error){
+        model.error = 'Ocorreu um erro inesperado';
+        //res.render('owner/institution/building_wizard');
+        res.json(error);
+    });
+};
+
+router.get('/wizard', get_wizard);
+router.post('/wizard', post_wizard);
+router.get('/:id/wizard', get_id_wizard);
+router.post('/:id/wizard', post_id_wizard);
 
 module.exports = router;

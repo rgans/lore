@@ -5,6 +5,11 @@ block head
     link(rel='stylesheet', href='/css/owner.institution.new.css')
 
 block content
+
+    if(errors)
+        each e, i in errors
+            label e
+
     form(method='POST' name='frm-save' action='/owner/institution/wizard')
         input(type='text' name='name' id='name' value=name placeholder='Nome da instituição')
         if(fault)

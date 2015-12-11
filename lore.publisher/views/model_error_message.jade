@@ -1,0 +1,3 @@
+mixin error_message(field)
+    if(fault && fault.code == 'model_validation')
+        div.model_error #{fault.message['pt-BR'][field]}

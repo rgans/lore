@@ -1,11 +1,14 @@
 extends layout
 
 block content
+  include model_error_message.jade
   h1= title
   p Welcome to #{title}
   form(id='frm-signup' action='/signup' method="POST")
     input(type='text' name='first_name' id='first_name' value=first_name placeholder='Nome')
+    p= model_error
     input(type='text' name='last_name' id='last_name' value=last_name placeholder='Nome')
+    +error_message('name')
     input(type='text' name='email' id='email' value=email placeholder='Email')
     input(type='text' name='password' id='password' placeholder='Senha')
     input(type='text' name='confirm_password' id='confirm_password' placeholder='Confirmar Senha')

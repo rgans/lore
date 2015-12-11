@@ -1,4 +1,4 @@
-var config = require('./config');
+var config = require('./app.config');
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -38,8 +38,9 @@ app.use(function loadUser(req, res, next) {
 });
 
 [
-    { path: '/owner/institution', controller: require('./routes/owner/institution') },
-    { path: '/owner', controller: require('./routes/owner/index') }
+    { path: '/', controller: require('./routes/index') },
+    { path: '/signup', controller: require('./routes/signup') },
+    { path: '/account', controller: require('./routes/account') }
 ].forEach(function(r){
     app.use(r.path, r.controller);
 });

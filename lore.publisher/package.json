@@ -16,6 +16,7 @@
     "express-form": "*",
     "request": "*",
     "connect-mongo": "*",
-    "express-session": "*"
+    "express-session": "*",
+    "mongoose": "*"
   }
 }

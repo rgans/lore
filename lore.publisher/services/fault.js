@@ -1,7 +1,10 @@
-var fault = function(code, message, innerException) {
-    this.code = typeof code === 'number' ? code : null;
-    this.message = typeof code === 'string' ? code : message;
-    this.innerException = innerException;
+var Fault = function(code, reason, message)
+{
+    this.code = code;
+    this.reason = reason;
+    this.message = {
+        'pt-BR': message
+    };
 };
 
-module.exports = fault;
+module.exports = Fault;

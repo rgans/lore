@@ -1,5 +1,4 @@
 var ModelSchema = require('./model_schema');
-var AccountService = require('../services/account_service');
 
 var signup = new ModelSchema({
     first_name: {

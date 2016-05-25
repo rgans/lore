@@ -14,6 +14,7 @@ var modelSchema = function (schema) {
     {
         this._error = null;
         this._schema = schema ? schema : {};
+        this._model_data = data;
         this._schema_keys = Object.keys(this._schema);
         
         this._load_model(data);
@@ -68,19 +69,21 @@ var modelSchema = function (schema) {
     };
 
     define.prototype.fault_result = function (code, reason) {
-        return new ServiceResult({fault: {}});
+        return new ServiceResult(this._model_data, {fault: {}});
     };
 
     define.prototype.validation_error_result = function () {
-        return new ServiceResult(new Fault('model_validation', 'Some field are invalid', this._error));
+        return new ServiceResult(this._model_data, new Fault('model_validation', 'Some field are invalid', this._error));
     };
 
     define.prototype.success_result = function (data) {
-        return new ServiceResult({result: data});
+        var m = extend(this._model_data, {result: data});
+        return new ServiceResult(m);
     };
 
     define.prototype.create_result = function (result) {
-        return new ServiceResult(result);
+        var m = extend(this._model_data, result);
+        return new ServiceResult(m);
     };
 
     return define;

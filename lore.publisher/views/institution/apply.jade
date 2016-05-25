@@ -1,0 +1,45 @@
+extends ../layout
+
+block head
+    script(type='text/javascript').
+        $(function(){
+            /* 
+             * Form validation methods
+             */
+            var $apply_button = $('#btn-apply');
+            $apply_button.click(function(e){
+                $apply_button.prop('disabled', true);
+
+                $.post('/institution/apply', { iid: 1 }, function(result) {
+                    if(result.fault)
+                    {
+                        $apply_button.prop('disabled', false);
+                    } else {
+                        $apply_button.replaceWith('<div>Solicitação enviada</div>');
+                    }
+                });
+
+                e.preventDefault();
+                return false;
+            });
+        });
+
+block content
+    div(class="container")
+        div(class="box")
+            h1= title
+            hr
+            form(id="frm-search" action="/institution/apply" method="GET" class="input-validate" novalidate)
+                div(class="row")
+                    div(class="column")
+                        input(type="text" name="isq" value=isq placeholder="Nome da instituição" class="span-12" required minlength="2" maxlength="100")
+                    div(class="column")
+                        input(type="submit" value="Procurar" class="blu-btn")
+
+            if(result)
+                ul(class="row")
+                    each i in result
+                        li
+                            div(class="column span-12") #{i.name}
+                            div(class="column")
+                                input(type="button" id="btn-apply" value="Solicitar convite" class="grn-btn" iid=i.id)

@@ -1,14 +1,95 @@
 doctype html
 html
-  head
-    title= title
-    link(rel='stylesheet', href='/css/root.css')
-    script(type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js')
-    script(type='text/javascript' src='/js/root.js')
-    block head
-  body
-    #header
-        label asdasdasdass
-    #content
-        block content
-    #footer
+    head
+        title= title
+        meta(http-equiv="Content-Type" content="text/html; charset=UTF-8")
+        meta(http-equiv="X-UA-Compatible" content="IE=edge")
+        meta(name="application-name" content="Website do Rancho Cinco Estrelas")
+        meta(name="application-url" content="http://www.ranchocincoestrelas.com.br")
+        meta(name="description" content="Pousada Rancho Cinco Estrelas")
+        meta(name="keywords" content="pousada,rancho,igarape,hotel,fazenda,piscina,churrasco,sauna,festa")
+        link(rel='stylesheet', media="screen", href='/css/screen.css')
+        link(rel='stylesheet', media="screen", href='/css/root.css')
+        script(type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js")
+        script(type="text/javascript" src="/js/global.js")
+        script(type="text/javascript" src="/js/flyout.js")
+        script(type='text/javascript').
+            $(function(){
+                /* 
+                 * Form validation methods
+                 */
+                $('.input-validate').submit(function(e){
+                    var $form = $(this);
+                    $form.find('input, select, textarea').each(function(){
+                        var isvalid = true;
+                        var $field = $(this);
+                        var v = {
+                            required: $field.attr('required'),
+                            minlength: $field.attr('minlength'),
+                            maxlength: $field.attr('maxlength'),
+                            equals: $field.attr('equals'),
+                            value: $field.val(),
+                        };
+
+                        if(v.required && v.value === '') {
+                            isvalid = false;
+                            $field.css('background-color', 'red');
+                            $field.append('<div class="flyout"><div id="tip"></div>O campo é obrigatorio</div>');
+                        }
+                        
+                        if(isvalid)
+                            $form.submit();
+                    });
+                    
+                    e.preventDefault();
+                    return false;
+                });
+            });
+
+        block head
+body
+    div(id="header_wrapper")
+        header
+            a(href="/")
+                img(src="img/logo.png" class="span-3 first left"  alt="")
+            nav(class="last right")
+                ul(class="right")
+                    li
+                        a(href="/gallery") O Que é?
+                    li
+                        a(href="/gallery") Minha Conta
+                    li
+                        a(href="/message") Contato
+                    li
+                        a(href="/signup" class="grn-btn") Cadastre-se
+
+    block content
+
+    footer(class="clearfix")
+        div(class="container")
+            div(id="tweets" class="span-6")
+                h6 Produtos e Serviços
+                a(href="#" class="row") Aplicativos para smartphones
+                a(href="#" class="row") Websites personalizados
+                a(href="#" class="row") Sistemas para seu negócio
+                a(href="#" class="row") APIs robustas e inteligentes
+                a(href="#" class="row") Grande gama de linguagens
+
+            div(class="about span-6")
+                h6 Fique por dentro
+                a(href="#" class="row") Conheça um pouco mais sobre nós
+                a(href="#" class="row") Ótimos preços para você
+                a(href="#" class="row") Conheça nossa equipe
+                a(href="#" class="row") FAQs
+                a(href="#" class="row") Fale Conosco
+
+            div(id="newsletter" class="span-10")
+                h6 A GansDev está contratando
+                p Amazon Web Services (AWS) is a dynamic, growing business unit within Amazon.com. We are currently hiring Software Development Engineers, 
+                  | Product Managers, Account Managers, Solutions Architects, Support Engineers, System Engineers, Designers and more. Visit our Careers page 
+                  | or our Developer-specific Careers page to learn more. Amazon Web Services is an Equal Opportunity Employer.
+            hr
+            div(class="copyright_info")
+                span(class="left" style="width:500px;") <b>Endereço: <b/> Rua dos Tico-Ticos, 161 Vivendas Santa Mônica / Igarapé - MG <br/> Telefone: 234234234 <br/> Email: r5e.igarape@gmail.com
+                span(class="right last") © 2016 by <b> Gans Desenvolvimento e Soluções LTDA, all rights reserved <b/>
+    block footer

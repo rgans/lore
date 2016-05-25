@@ -39,8 +39,8 @@ app.use(function loadUser(req, res, next) {
 
 [
     { path: '/', controller: require('./routes/index') },
-    { path: '/signup', controller: require('./routes/signup') },
-    { path: '/account', controller: require('./routes/account') }
+    { path: '/account', controller: require('./routes/account') },
+    { path: '/institution', controller: require('./routes/institution') }
 ].forEach(function(r){
     app.use(r.path, r.controller);
 });

@@ -1,0 +1,18 @@
+extends navigation
+
+block head
+
+block content
+    form(method='POST' name='frm-save' action='/owner/institution/#{_id}/wizard')
+        label(for='campus') Campus:
+        input(type='text' name='[campus][name]')
+        input(type='text' name='[campus][address][location]' value='asd')
+        input(type='text' name='[campus][address][district]' value='fwfwe')
+        input(type='text' name='[campus][address][city]' value='werw')
+        input(type='text' name='[campus][address][province]' value='223rwe')
+        input(type='text' name='[campus][address][postcode]' value='asdfghjk')
+        input(type='text' name='[campus][address][country]' value='Brasil')
+
+        input(type='text' name='[campus][building][0][name]')
+
+        input(type='submit' name='btn-save' value='Salvar')

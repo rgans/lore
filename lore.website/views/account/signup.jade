@@ -1,0 +1,42 @@
+extends ../layout
+
+block content
+    div(class="container")
+        div(class="box")
+            h1= title
+            hr
+            form(id="frm-signup" action="/signup" method="POST" class="input-validate" novalidate)
+                div(class="row")
+                    input(type="text" name="first_name" value=first_name placeholder="Nome" class="span-8" required minlength="2" maxlength="30")
+                    input(type="text" name="last_name" value=last_name placeholder="Sobrenome" class="span-12" required minlength="2" maxlength="70")
+                div(class="row")
+                    input(type="email" name="email" value=email placeholder="Email" class="span-10" required minlength="4" maxlength="100")
+                    input(type="password" name="password" placeholder="Senha" class="span-5" required minlength="6" maxlength="12" equals="confirm_password")
+                    input(type="password" name="confirm_password" placeholder="Confirmar Senha" class="span-5" required minlength="6" maxlength="12")
+                div(class="row")
+                    div(class="column span-8")
+                        label Data Nascimento: 
+                        br
+                        select(name="birthday" class="span-2")
+                            option(value="") Dia
+                            each day in birth_dates.days
+                                option(value=day.value)= day.key
+                        select(name="birthmonth" class="span-2")
+                            option(value="") Mes
+                            each month in birth_dates.months
+                                option(value=month.value)= month.key
+                        select(name="birthhyear" class="span-3")
+                            option(value="") Ano
+                            each year in birth_dates.years
+                                option(value=year.value)= year.key
+                    div(class="column")
+                        label Genero: 
+                        br
+                        input(type="radio" name="gender" value=email required)
+                        label(class="append-1") Masculino
+                        input(type="radio" name="gender" value=email required)
+                        label(class="append-1") Feminino
+                        input(type="radio" name="gender" value=email required)
+                        label(class="append-1") Não informar
+                div(class="row prepend-top")
+                    input(type="submit" name="btn-save" value="Salvar e criar minha conta" class="grn-btn")

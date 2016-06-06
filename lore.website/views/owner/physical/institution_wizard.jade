@@ -1,0 +1,18 @@
+extends navigation
+
+block head
+    script(type='text/javascript' src='/js/owner.institution.new.js')
+    link(rel='stylesheet', href='/css/owner.institution.new.css')
+
+block content
+
+    if(errors)
+        each e, i in errors
+            label e
+
+    form(method='POST' name='frm-save' action='/owner/institution/wizard')
+        input(type='text' name='name' id='name' value=name placeholder='Nome da instituição')
+        if(fault)
+            label(class='frm-error') #{fault}
+
+        input(type='submit' name='btn-save' value='Salvar')

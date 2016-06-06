@@ -2,6 +2,16 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/Users/rgans/Projetos/lore/lore.publisher/services/account_service.js</file>
+            <file>file:/Users/rgans/Projetos/lore/lore.publisher/public/css/root.css</file>
+            <file>file:/Users/rgans/Projetos/lore/lore.publisher/views/institution/apply.jade</file>
+            <file>file:/Users/rgans/Projetos/lore/lore.publisher/public/css/screen.css</file>
+            <file>file:/Users/rgans/Projetos/lore/lore.publisher/app.js</file>
+            <file>file:/Users/rgans/Projetos/lore/lore.publisher/views/layout.jade</file>
+            <file>file:/Users/rgans/Projetos/lore/lore.publisher/model/signup.js</file>
+            <file>file:/Users/rgans/Projetos/lore/lore.publisher/routes/institution.js</file>
+            <file>file:/Users/rgans/Projetos/lore/lore.publisher/views/account/signup.jade</file>
+        </group>
     </open-files>
 </project-private>
